@@ -1,0 +1,57 @@
+body {
+  background-color: rgb(255, 255, 255);
+  font: 400 2.125em/1.38 Helvetica;
+  color: rgb(255, 255, 255);
+}
+
+.container {
+  left: 0;
+  width: 100%;
+  background-color: rgb(122, 79, 177);
+}
+
+.text {
+  float: left;
+  font-weight: 400;
+  line-height: 1.38;
+  color: rgb(255, 255, 255);
+}
+
+.text-1 p {
+  margin-bottom: 1em;
+}
+
+._container {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  height: 200px;
+}
+
+._element {
+  position: absolute;
+  bottom: 0;
+  z-index: 4;
+  height: 117px;
+}
+
+.text-1 {
+  margin: 33px 0 0 10%;
+  font-size: 1em;
+}
+
+.text-2 {
+  width: 6.8333333333%;
+  height: 28px;
+  margin: 172px 0 0 39.18099%;
+  font-size: 0.529em;
+  text-align: center;
+}
+
+.text-3 {
+  width: 6.8333333333%;
+  height: 28px;
+  margin: 172px 0 0 1.56771%;
+  font-size: 0.529em;
+  text-align: center;
+}

@@ -1,0 +1,156 @@
+body {
+  background-color: rgb(255, 255, 255);
+  font: 300 1.125em/1.38 Roboto;
+  color: rgb(92, 92, 92);
+}
+
+.container .container {
+  position: relative;
+  float: left;
+  z-index: 5;
+  width: 42.5374348958%;
+  height: 24px;
+  margin: 3px 0 0 7.59766%;
+}
+
+.text {
+  line-height: 1.38;
+}
+
+.text-1 p {
+  margin-bottom: 1em;
+}
+
+.wrapper {
+  float: left;
+  clear: both;
+  width: 100%;
+  height: 555px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+._button {
+  display: block;
+  float: left;
+  clear: both;
+  width: 8.5416666666%;
+  height: 23px;
+  margin: 8px 0 0 83.9990234375%;
+  border-radius: 3px;
+  background-color: rgb(222, 222, 222);
+  font-size: 0.889em;
+  font-weight: 400;
+  line-height: 1.38;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+._input {
+  display: block;
+  position: relative;
+  float: left;
+  z-index: 6;
+  width: 26.4583333333%;
+  height: 24px;
+  margin-left: 23.40332%;
+  padding: 0 10px;
+  background-color: rgb(242, 242, 242);
+  font-size: 0.889em;
+  font-weight: 400;
+  line-height: 1.38;
+  color: rgb(143, 143, 143);
+}
+
+.container-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  width: 100%;
+  height: 200px;
+  background-color: rgb(122, 79, 177);
+}
+
+.container-2 {
+  position: relative;
+  float: left;
+  width: 80%;
+  height: 620px;
+  margin: 268px 0 0 10%;
+}
+
+.text-1 {
+  float: left;
+  margin: 33px 0 0 10%;
+  font-size: 1.889em;
+  font-weight: 100;
+  color: rgb(255, 255, 255);
+}
+
+.text-2 {
+  float: right;
+  margin: 156px 10.18099% 0 0;
+  font-size: 1.778em;
+  font-weight: 100;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.text-3 {
+  float: right;
+  width: 19.8617053789%;
+  margin-right: 80.37115%;
+  font-size: 1em;
+  text-align: center;
+  color: rgb(92, 92, 92);
+}
+
+.text-4 {
+  float: right;
+  clear: both;
+  width: 19.8617053789%;
+  margin: -24px 60.50507% 0 0;
+  font-size: 1em;
+  text-align: center;
+  color: rgb(92, 92, 92);
+}
+
+.text-5 {
+  float: right;
+  clear: both;
+  width: 19.8617053789%;
+  margin: -24px 40.64282% 0 0;
+  font-size: 1em;
+  text-align: center;
+  color: rgb(92, 92, 92);
+}
+
+.text-6 {
+  float: right;
+  clear: both;
+  width: 19.8617053789%;
+  margin: -24px 20.6198584273% 0 0;
+  font-size: 1em;
+  text-align: center;
+  color: rgb(92, 92, 92);
+}
+
+.text-7 {
+  float: right;
+  clear: both;
+  width: 19.8617053789%;
+  margin: -24px 0.3826286588% 0 0;
+  font-size: 1em;
+  text-align: center;
+  color: rgb(92, 92, 92);
+}
+
+.text-3:focus,
+.text-4:focus,
+.text-5:focus,
+.text-6:focus,
+.text-7:focus {
+  font-weight: 500;
+  color: rgb(122, 79, 177);
+}
