@@ -9,5 +9,5 @@
   var $companyName = $('.js-company-name');
 
 
-  $companyName.html('#{companyName}')
+  //$companyName.html('#{companyName}')
 })();

@@ -2,8 +2,7 @@ var express = require('express')
 var app = express()
 var fs = require('fs')
 var path = require('path')
-var net = require('net')
-var jsonSocket = require('json-socket');
+var swig = require('swig')
 
 /*
 var https = require('https')
@@ -25,9 +24,10 @@ console.log('HTTP server listening on %s:%s', HOST, PORT)
 var nodeCouchDB = require('node-couchdb')
 var couch = new nodeCouchDB('localhost', 5984)
 
+app.engine('html', swig.renderFile)
+app.set('view engine', 'html')
 app.use(express.static(__dirname + '/design/layout/'))
-app.set('views', path.join(__dirname + '/design/layout/'))
-app.set('view engine', 'rtl')
+app.set('views', __dirname + '/design/layout/')
 
 /*
 var JSONPORT = 8001
@@ -50,8 +50,8 @@ app.get('/', function(req, res) {
 var companyName = 'testcompany'
 
 app.get('/testcompany', function(req, res) {
-	//res.render('retailers', {companyName: 'test company'})
-	res.sendFile(path.join(__dirname + '/design/layout/retailers.html'))
+	res.render('retailers', {company_name: 'turtle'})
+	//res.sendFile(path.join(__dirname + '/design/layout/retailers.html'))
 })
 
 //
