@@ -2,6 +2,8 @@ var express = require('express')
 var app = express()
 var fs = require('fs')
 var path = require('path')
+var net = require('net')
+var jsonSocket = require('json-socket');
 
 /*
 var https = require('https')
@@ -24,15 +26,32 @@ var nodeCouchDB = require('node-couchdb')
 var couch = new nodeCouchDB('localhost', 5984)
 
 app.use(express.static(__dirname + '/design/layout/'))
-//app.set('view engine', 'jade')
+app.set('views', path.join(__dirname + '/design/layout/'))
+app.set('view engine', 'rtl')
 
+/*
+var JSONPORT = 8001
+var messageServer = net.createServer()
+messageServer.listen(JSONPORT)
+messageServer.on('connection', function(socket) {
+	socket = new JsonSocket(socket)
+	socket.on('message', function(message) {
+		console.log(message)
+		socket.sendEndMessage({response: 'soup'})
+	})
+})
+*/
+  
 app.get('/', function(req, res) {
 	//res.render('design/layout/index.html')
 	res.sendFile(path.join(__dirname + '/design/layout/index.html'))
 })
 
-app.get('/retailer', function(req, res) {
-	//res.render('design/layout/retailers')
+var companyName = 'testcompany'
+
+app.get('/testcompany', function(req, res) {
+	//res.render('retailers', {companyName: 'test company'})
 	res.sendFile(path.join(__dirname + '/design/layout/retailers.html'))
 })
 
+//
