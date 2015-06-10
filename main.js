@@ -44,10 +44,11 @@ app.use(multer({
 		return (req.body.uploadType + '_' + filename + '_' + Date.now()).replace(' ', '').toLowerCase()
 	},
 	onFileUploadStart: function(file) {
-		console.log('upload of ' + file.orginalname + ' started...')
+		console.log('upload of started...')
 	},
 	onFileUploadComplete: function(file) {
 		console.log(file.fieldname + ' saved as ' + file.path)
+		insertIntoDB(file.name.split('_')[0], file)
 		uploadDone = true
 	}
 }))
@@ -75,16 +76,7 @@ app.get('/testcompany', function(req, res) {
 
 app.post('/uploadFile', function(req, res) {
 	if (uploadDone) {
-		console.log(req.files)
-		//Figure out upload status updating
 		res.redirect('back')
-
-		for (var key in req.files) {
-			if (req.files.hasOwnProperty(key)) {
-				var file = req.files[key]
-				insertIntoDB(file.name.split('_')[0], file)
-			}
-		}
 	}
 })
 
