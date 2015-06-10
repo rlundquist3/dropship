@@ -7,6 +7,8 @@ var http = require('http')
 var nodeCouchDB = require('node-couchdb')
 var bodyParser = require('body-parser')
 var multer = require('multer')
+var csv = require('fast-csv')
+var uuid = require('uuid')
 
 /*
 var https = require('https')
@@ -74,10 +76,74 @@ app.get('/testcompany', function(req, res) {
 app.post('/uploadFile', function(req, res) {
 	if (uploadDone) {
 		console.log(req.files)
-
 		//Figure out upload status updating
 		res.redirect('back')
 
-		
+		for (var key in req.files) {
+			if (req.files.hasOwnProperty(key)) {
+				var file = req.files[key]
+				switch (file.name.split('_')[0]) {
+					case 'products':
+						insertProducts(file)
+						break;
+					case 'inventory':
+						insertInventory(file)
+						break;
+					case 'purchaseorder':
+						insertPurchaseOrder(file)
+						break;
+					case 'orderstatus':
+						insertOrderStatus(file)
+						break;
+					case 'ordertracking':
+						insertOrderTracking(file)
+						break;
+					case 'invoices':
+						insertInvoices(file)
+						break;
+					case 'suppliers':
+						insertSuppliers(file)
+						break;
+					case 'retailers':
+						insertRetailers(file)
+						break;
+					default:
+						console.log('Upload type failed to match')
+				}
+			}
+		}
 	}
 })
+
+function insertProducts(file) {
+	var stream = fs.createReadStream(file.path, {headers: true})
+	var headers
+	csv
+		.fromStream(stream)
+		.transform(function(data) {
+			if (headers) {
+				var id = uuid.v1()
+				var paired = {}
+				paired._id = id
+				for (var i = 0; i<data.length; i++)
+					paired[headers[i]] = data[i]
+				return paired
+			} else {
+				headers = data
+				return
+			}
+		})
+		.on('data', function(data) {
+			console.log(data)
+
+			/*couch.insert(type, data, function(err, resData) {
+				if (err)
+					return console.error(err)
+
+				console.dir(resData)
+			})*/
+		})
+		.on('end', function() {
+			console.log('stream done')
+		})
+}
