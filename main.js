@@ -136,12 +136,12 @@ function insertProducts(file) {
 		.on('data', function(data) {
 			console.log(data)
 
-			/*couch.insert(type, data, function(err, resData) {
+			couch.insert('products', data, function(err, resData) {
 				if (err)
 					return console.error(err)
 
 				console.dir(resData)
-			})*/
+			})
 		})
 		.on('end', function() {
 			console.log('stream done')
