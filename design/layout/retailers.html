@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
   <title>retailers</title>
-  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,100" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,100" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/standardize.css">
   <link rel="stylesheet" href="css/retailers-grid.css">
   <link rel="stylesheet" href="css/retailers.css">
@@ -27,8 +27,27 @@
     </div>
     <input class="_input js-search-bar" name="search" placeholder="search..." type="text">
     <div class="wrapper"></div>
-    <button class="_button js-update-button">update</button>
+    <button class="_button _button-1 js-upload-button">upload</button>
+    <button class="_button _button-2 js-update-button">update</button>
   </div>
+  <div class="wrapper wrapper-2 js-upload-form"><form id = 'uploadForm'
+      enctype = 'multipart/form-data'
+      action = '/uploadFile'
+      method = 'post'>
+    <select name='uploadType'>
+        <option name='product'>Product</option>
+        <option name='inventory'>Inventory</option>
+        <option name='orderStatus'>Order Status</option>
+        <option name='orderTracking'>Order Tracking</option>
+        <option name='invoice'>Invoice</option>
+        <option name='supplier'>Supplier</option>
+        <option name='retailer'>Retailer</option>
+    </select>
+    <br><br>
+    <input type='file' name='file1'/>
+    <br><br>
+    <input type='submit' class='jsUploadFormButton' value='Done'/>
+</form></div>
 
   <script src="js/jquery-min.js"></script>
   <script src="js/retailers.js"></script>

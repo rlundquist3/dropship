@@ -1,5 +1,7 @@
 (function() {
+  var $uploadForm = $('.js-upload-form');
   var $updateButton = $('.js-update-button');
+  var $uploadButton = $('.js-upload-button');
   var $searchBar = $('.js-search-bar');
   var $profileTab = $('.js-profile-tab');
   var $partnersTab = $('.js-partners-tab');
@@ -9,5 +11,13 @@
   var $companyName = $('.js-company-name');
 
 
-  //$companyName.html('#{companyName}')
+  $uploadButton.on('click', function() {
+    $uploadForm.css('visibility', 'visible')
+  })
+
+  var $uploadFormButton = $('.jsUploadFormButton')
+
+  $uploadFormButton.on('click', function() {
+    $uploadForm.css('visibility', 'invisible')
+  })
 })();
