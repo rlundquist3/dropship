@@ -82,40 +82,13 @@ app.post('/uploadFile', function(req, res) {
 		for (var key in req.files) {
 			if (req.files.hasOwnProperty(key)) {
 				var file = req.files[key]
-				switch (file.name.split('_')[0]) {
-					case 'products':
-						insertProducts(file)
-						break;
-					case 'inventory':
-						insertInventory(file)
-						break;
-					case 'purchaseorder':
-						insertPurchaseOrder(file)
-						break;
-					case 'orderstatus':
-						insertOrderStatus(file)
-						break;
-					case 'ordertracking':
-						insertOrderTracking(file)
-						break;
-					case 'invoices':
-						insertInvoices(file)
-						break;
-					case 'suppliers':
-						insertSuppliers(file)
-						break;
-					case 'retailers':
-						insertRetailers(file)
-						break;
-					default:
-						console.log('Upload type failed to match')
-				}
+				insertIntoDB(file.name.split('_')[0], file)
 			}
 		}
 	}
 })
 
-function insertProducts(file) {
+function insertIntoDB(dataType, file) {
 	var stream = fs.createReadStream(file.path, {headers: true})
 	var headers
 	csv
@@ -136,7 +109,7 @@ function insertProducts(file) {
 		.on('data', function(data) {
 			console.log(data)
 
-			couch.insert('products', data, function(err, resData) {
+			couch.insert(dataType, data, function(err, resData) {
 				if (err)
 					return console.error(err)
 
