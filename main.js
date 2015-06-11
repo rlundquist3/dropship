@@ -23,13 +23,12 @@ console.log('HTTPS server listening on %s:%s', HOST, PORT)
 var PORT = 8000
 var HOST = 'localhost'
 
-http.createServer(app).listen(PORT, HOST)
+var server = http.createServer(app).listen(PORT, HOST)
 console.log('HTTP server listening on %s:%s', HOST, PORT)
 
-var couch = new nodeCouchDB('localhost', 5984)
+var io = require('socket.io')(server)
 
-/*var uploads = require('./routes/uploads')
-app.use('/uploads', uploads)*/
+var couch = new nodeCouchDB('localhost', 5984)
 
 app.engine('html', swig.renderFile)
 app.set('view engine', 'html')
@@ -53,18 +52,13 @@ app.use(multer({
 	}
 }))
 
-/*
-var JSONPORT = 8001
-var messageServer = net.createServer()
-messageServer.listen(JSONPORT)
-messageServer.on('connection', function(socket) {
-	socket = new JsonSocket(socket)
-	socket.on('message', function(message) {
-		console.log(message)
-		socket.sendEndMessage({response: 'soup'})
+io.on('connection', function(socket) {
+	console.log('socket connection')
+	socket.emit('server_emit', {hello: 'world'})
+	socket.on('client_emit', function(data) {
+		console.log(data)
 	})
 })
-*/
 
 app.get('/', function(req, res) {
 	res.render('index')
@@ -78,6 +72,10 @@ app.post('/uploadFile', function(req, res) {
 	if (uploadDone) {
 		res.redirect('back')
 	}
+})
+
+app.get('/products', function(req, res) {
+	res.render('products')
 })
 
 function insertIntoDB(dataType, file) {
