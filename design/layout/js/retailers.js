@@ -45,6 +45,11 @@
 
   var socket = io.connect('http://localhost:8000');
     socket.on('server_emit', function (data) {
-      socket.emit('client_emit', {turtle: 'soup'});
+      socket.emit('client_emit', {client: 'response'});
     });
+  socket.on('product_data', displayProductData(data))
+
+      function displayProductData(data) {
+          $productsTable.html('<p>got product data</p>')
+      }
 })();

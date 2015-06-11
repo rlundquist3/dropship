@@ -66,6 +66,8 @@ app.get('/', function(req, res) {
 
 app.get('/testcompany', function(req, res) {
 	res.render('retailers', {company_name: 'company name'})
+
+	loadCompanyData()
 })
 
 app.post('/uploadFile', function(req, res) {
@@ -77,6 +79,15 @@ app.post('/uploadFile', function(req, res) {
 app.get('/products', function(req, res) {
 	res.render('products')
 })
+
+function loadCompanyData() {
+	couch.get('products', '_design/all/_view/allProducts', function(err, resData) {
+		if (err)
+			return console.error(err)
+		console.dir('sending product data: ' + resData.data.rows)
+		io.emit('product_data', resData.data.rows)
+	})
+}
 
 function insertIntoDB(dataType, file) {
 	var stream = fs.createReadStream(file.path, {headers: true})

@@ -98,6 +98,16 @@ body {
   transition: .3s;
 }
 
+.container-5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 20%;
+  height: 516px;
+  overflow: hidden;
+}
+
 .text-1 {
   float: left;
   margin: 33px 0 0 10%;
@@ -194,11 +204,6 @@ body {
 }
 
 .wrapper-5 {
-  left: 0;
-  z-index: 9;
-}
-
-.wrapper-6 {
   visibility: hidden;
   position: relative;
   float: left;
@@ -206,7 +211,7 @@ body {
   z-index: 19;
   width: 39.1666666666%;
   height: 335px;
-  margin: -519px 0 0 30.39974%;
+  margin: -519px 0 0 30.3997395833%;
   background-color: rgb(92, 92, 92);
 }
 
