@@ -43,17 +43,22 @@
     $tableSlider.css('left', '-400%')
   })
 
-  var socket = io.connect('http://localhost:8000');
-    /*socket.on('server_emit', function (message) {
-      socket.emit('client_emit', 'client response');
-  });*/
-  socket.emit('get_product_data')
-  socket.on('product_data', function(data) {
-      socket.emit('product_confirm', 'client got product data')
-      displayProductData(data)
+  var socket = io.connect();
+  socket.emit('get_company_data')
+  socket.on('products_data', function(data) {
+    socket.emit('product_confirm', 'client got product data')
+    displayProductData(data)
+  })
+  socket.on('inventory_data', function(data) {
+    socket.emit('inventory_confirm', 'client got inventory data')
+    displayInventoryData(data)
   })
 
-      function displayProductData(data) {
-          $productsTable.html('turtle')
-      }
+  function displayProductData(data) {
+    $productsTable.html('turtle')
+  }
+
+  function displayInventoryData(data) {
+    $inventoryTable.html('soup')
+  }
 })();

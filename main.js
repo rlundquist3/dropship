@@ -9,6 +9,7 @@ var bodyParser = require('body-parser')
 var multer = require('multer')
 var csv = require('fast-csv')
 var uuid = require('uuid')
+var util = require('util')
 
 /*
 var https = require('https')
@@ -29,6 +30,12 @@ console.log('HTTP server listening on %s:%s', HOST, PORT)
 var io = require('socket.io')(server)
 
 var couch = new nodeCouchDB('localhost', 5984)
+
+var tabs = ['products',
+			'inventory'/*,
+			'orders',
+			'partners',
+			'profile'*/]
 
 app.engine('html', swig.renderFile)
 app.set('view engine', 'html')
@@ -54,20 +61,17 @@ app.use(multer({
 
 io.on('connection', function(socket) {
 	console.log('socket connection')
-	/*socket.emit('server_emit', 'server listening')
-	socket.on('client_emit', function(message) {
-		console.log(io)
-		console.log(message)
-	})*/
-	socket.on('get_product_data', function(socket) {
-		console.log('product data request')
+	socket.on('get_company_data', function(socket) {
+		console.log('company data request')
 		loadCompanyData()
 	})
 	socket.on('product_confirm', function(data) {
-		console.log('product data confirmation')
+		console.log(data)
+	})
+	socket.on('inventory_confirm', function(data) {
+		console.log(data)
 	})
 })
-
 
 app.get('/', function(req, res) {
 	res.render('index')
@@ -75,8 +79,6 @@ app.get('/', function(req, res) {
 
 app.get('/testcompany', function(req, res) {
 	res.render('retailers', {company_name: 'company name'})
-
-	//loadCompanyData()
 })
 
 app.post('/uploadFile', function(req, res) {
@@ -90,11 +92,21 @@ app.get('/products', function(req, res) {
 })
 
 function loadCompanyData() {
-	couch.get('products', '_design/all/_view/allProducts', function(err, resData) {
+	for (var tab of tabs) {
+		var db = tab
+		var query = util.format('_design/%s/_view/all_%s', tab, tab)
+		console.log(query)
+		var data = getFromDB(db, query)
+		io.emit(util.format('%s_data', tab), data)
+	}
+}
+
+function getFromDB(db, query) {
+	couch.get(db, query, function(err, resData) {
+		console.log(db)
 		if (err)
 			return console.error(err)
-		console.dir('sending product data: ' + resData.data.rows)
-		io.emit('product_data', resData.data.rows)
+		return resData.data.rows
 	})
 }
 
