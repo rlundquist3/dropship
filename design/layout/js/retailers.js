@@ -60,7 +60,7 @@
     $('.products-table-table').dataTable({
         'data': data,
         'columns': [
-            {'data': 'value.z', 'title': 'a'},
+            {'data', 'title': 'value.z'},
             {'data': 'value.y', 'title': 'b'},
             {'data': 'value.x', 'title': 'c'},
             {'data': 'value.w', 'title': 'd'},
