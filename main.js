@@ -54,11 +54,20 @@ app.use(multer({
 
 io.on('connection', function(socket) {
 	console.log('socket connection')
-	socket.emit('server_emit', {hello: 'world'})
-	socket.on('client_emit', function(data) {
-		console.log(data)
+	/*socket.emit('server_emit', 'server listening')
+	socket.on('client_emit', function(message) {
+		console.log(io)
+		console.log(message)
+	})*/
+	socket.on('get_product_data', function(socket) {
+		console.log('product data request')
+		loadCompanyData()
+	})
+	socket.on('product_confirm', function(data) {
+		console.log('product data confirmation')
 	})
 })
+
 
 app.get('/', function(req, res) {
 	res.render('index')
@@ -67,7 +76,7 @@ app.get('/', function(req, res) {
 app.get('/testcompany', function(req, res) {
 	res.render('retailers', {company_name: 'company name'})
 
-	loadCompanyData()
+	//loadCompanyData()
 })
 
 app.post('/uploadFile', function(req, res) {
