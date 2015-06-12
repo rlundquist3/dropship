@@ -96,17 +96,23 @@ function loadCompanyData() {
 		var db = tab
 		var query = util.format('_design/%s/_view/all_%s', tab, tab)
 		console.log(query)
-		var data = getFromDB(db, query)
-		io.emit(util.format('%s_data', tab), data)
+
+		getFromDB(db, query, function(err, db, data) {
+			if (err)
+				throw err
+			console.log('callback')
+			console.log(data)
+			io.emit(util.format('%s_data', db), data)
+		})
 	}
 }
 
-function getFromDB(db, query) {
+function getFromDB(db, query, callback) {
 	couch.get(db, query, function(err, resData) {
 		console.log(db)
 		if (err)
 			return console.error(err)
-		return resData.data.rows
+		callback(null, db, resData.data.rows)
 	})
 }
 

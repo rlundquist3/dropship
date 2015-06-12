@@ -55,10 +55,23 @@
   })
 
   function displayProductData(data) {
-    $productsTable.html('turtle')
+    $productsTable.html('<table cellpadding="0" cellspacing="0" border="0" class="products-table-table"></table>')
+    console.log(data)
+    $('.products-table-table').dataTable({
+        'data': data,
+        'columns': [
+            {'data': 'value.z', 'title': 'a'},
+            {'data': 'value.y', 'title': 'b'},
+            {'data': 'value.x', 'title': 'c'},
+            {'data': 'value.w', 'title': 'd'},
+            {'data': 'value.v', 'title': 'e'}
+        ]
+    })
   }
 
   function displayInventoryData(data) {
     $inventoryTable.html('soup')
   }
+
+
 })();
