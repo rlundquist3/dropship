@@ -4,12 +4,11 @@ var fs = require('fs')
 var path = require('path')
 var swig = require('swig')
 var http = require('http')
-var nodeCouchDB = require('node-couchdb')
 var bodyParser = require('body-parser')
 var multer = require('multer')
-var csv = require('fast-csv')
-var uuid = require('uuid')
 var util = require('util')
+var db = require('./db.js')
+
 
 /*
 var https = require('https')
@@ -28,8 +27,6 @@ var server = http.createServer(app).listen(PORT, HOST)
 console.log('HTTP server listening on %s:%s', HOST, PORT)
 
 var io = require('socket.io')(server)
-
-var couch = new nodeCouchDB('localhost', 5984)
 
 var tabs = ['products',
 			'inventory'/*,
@@ -54,7 +51,7 @@ app.use(multer({
 	},
 	onFileUploadComplete: function(file) {
 		console.log(file.fieldname + ' saved as ' + file.path)
-		insertIntoDB(file.name.split('_')[0], file)
+		db.insertIntoDB(file.name.split('_')[0], file)
 		uploadDone = true
 	}
 }))
@@ -77,7 +74,8 @@ app.get('/', function(req, res) {
 	res.render('index')
 })
 
-app.get('/testcompany', function(req, res) {
+var name = 'test'
+app.get(util.format('/user_%s', name), function(req, res) {
 	res.render('retailers', {company_name: 'company name'})
 })
 
@@ -93,58 +91,15 @@ app.get('/products', function(req, res) {
 
 function loadCompanyData() {
 	for (var tab of tabs) {
-		var db = tab
 		var query = util.format('_design/%s/_view/all_%s', tab, tab)
 		console.log(query)
 
-		getFromDB(db, query, function(err, db, data) {
+		db.getFromDB(tab, query, function(err, tab, data) {
 			if (err)
 				throw err
 			console.log('callback')
 			console.log(data)
-			io.emit(util.format('%s_data', db), data)
+			io.emit(util.format('%s_data', tab), data)
 		})
 	}
-}
-
-function getFromDB(db, query, callback) {
-	couch.get(db, query, function(err, resData) {
-		console.log(db)
-		if (err)
-			return console.error(err)
-		callback(null, db, resData.data.rows)
-	})
-}
-
-function insertIntoDB(dataType, file) {
-	var stream = fs.createReadStream(file.path, {headers: true})
-	var headers
-	csv
-		.fromStream(stream)
-		.transform(function(data) {
-			if (headers) {
-				var id = uuid.v1()
-				var paired = {}
-				paired._id = id
-				for (var i = 0; i<data.length; i++)
-					paired[headers[i]] = data[i]
-				return paired
-			} else {
-				headers = data
-				return
-			}
-		})
-		.on('data', function(data) {
-			console.log(data)
-
-			couch.insert(dataType, data, function(err, resData) {
-				if (err)
-					return console.error(err)
-
-				console.dir(resData)
-			})
-		})
-		.on('end', function() {
-			console.log('stream done')
-		})
 }
