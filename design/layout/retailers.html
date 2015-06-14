@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/standardize.css">
   <link rel="stylesheet" href="css/retailers-grid.css">
   <link rel="stylesheet" href="css/retailers.css">
-  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 </head>
 <body class="body page-retailers clearfix">
   <div class="container container-1 clearfix">
@@ -28,16 +27,16 @@
     </div>
     <input class="_input js-search-bar" name="search" placeholder="search..." type="text">
     <div class="container container-4 js-table-slider">
-      <div class="wrapper wrapper-1 js-profile-table">/profile</div>
-      <div class="wrapper wrapper-2 js-partners-table">/partners</div>
-      <div class="wrapper wrapper-3 js-orders-table">/orders</div>
-      <div class="wrapper wrapper-4 js-inventory-table">/inventory</div>
-      <div class="container container-5 js-products-table">product data loading...</div>
+      <div class="wrapper wrapper-1 js-profile-container">/profile</div>
+      <div class="wrapper wrapper-2 js-partners-container">/partners</div>
+      <div class="wrapper wrapper-3 js-orders-container">/orders</div>
+      <div class="wrapper wrapper-4 js-inventory-container">/inventory</div>
+      <div class="wrapper wrapper-5 js-products-container">product data loading...</div>
     </div>
     <button class="_button _button-1 js-upload-button">upload</button>
     <button class="_button _button-2 js-update-button">update</button>
   </div>
-  <div class="wrapper wrapper-5 js-upload-form"><form id = 'uploadForm'
+  <div class="wrapper wrapper-6 js-upload-form"><form id = 'uploadForm'
       enctype = 'multipart/form-data'
       action = '/uploadFile'
       method = 'post'>
@@ -55,10 +54,8 @@
     <br><br>
     <input type='submit' class='jsUploadFormButton' value='Done'/>
 </form></div>
-<script src="/socket.io/socket.io.js"></script>
 
   <script src="js/jquery-min.js"></script>
   <script src="js/retailers.js"></script>
-  <script src="js/jquery.dataTables.min.js"></script>
 </body>
 </html>

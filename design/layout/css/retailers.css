@@ -46,7 +46,7 @@ body {
   z-index: 6;
   width: 26.4583333333%;
   height: 24px;
-  margin-left: 23.40007%;
+  margin-left: 23.39844%;
   padding: 0 10px;
   background-color: rgb(242, 242, 242);
   font-size: 0.889em;
@@ -70,7 +70,7 @@ body {
   float: left;
   z-index: 15;
   width: 80%;
-  margin: 268px 0 0 10%;
+  margin: 268px 0 0 9.86589%;
   overflow: hidden;
 }
 
@@ -80,7 +80,7 @@ body {
   z-index: 5;
   width: 42.5374348958%;
   height: 24px;
-  margin: 3px 0 0 7.59766%;
+  margin: 3px 0 0 7.59603%;
 }
 
 .container-4 {
@@ -98,19 +98,9 @@ body {
   transition: .3s;
 }
 
-.container-5 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 9;
-  width: 20%;
-  height: 516px;
-  overflow: hidden;
-}
-
 .text-1 {
   float: left;
-  margin: 33px 0 0 10%;
+  margin: 33px 0 0 9.9987%;
   font-size: 1.889em;
   font-weight: 100;
   color: rgb(255, 255, 255);
@@ -118,7 +108,7 @@ body {
 
 .text-2 {
   float: right;
-  margin: 156px 10.18099% 0 0;
+  margin: 156px 10.17969% 0 0;
   font-size: 1.778em;
   font-weight: 100;
   text-align: center;
@@ -128,7 +118,7 @@ body {
 .text-3 {
   float: right;
   width: 19.8617053789%;
-  margin-right: 80.37115%;
+  margin-right: 80.3635%;
   font-size: 1em;
   text-align: center;
   color: rgb(92, 92, 92);
@@ -138,7 +128,7 @@ body {
   float: right;
   clear: both;
   width: 19.8617053789%;
-  margin: -24px 60.50507% 0 0;
+  margin: -24px 60.49742% 0 0;
   font-size: 1em;
   text-align: center;
   color: rgb(92, 92, 92);
@@ -148,7 +138,7 @@ body {
   float: right;
   clear: both;
   width: 19.8617053789%;
-  margin: -24px 40.64282% 0 0;
+  margin: -24px 40.63899% 0 0;
   font-size: 1em;
   text-align: center;
   color: rgb(92, 92, 92);
@@ -158,7 +148,7 @@ body {
   float: right;
   clear: both;
   width: 19.8617053789%;
-  margin: -24px 20.61986% 0 0;
+  margin: -24px 20.61221% 0 0;
   font-size: 1em;
   text-align: center;
   color: rgb(92, 92, 92);
@@ -168,7 +158,7 @@ body {
   float: right;
   clear: both;
   width: 19.8617053789%;
-  margin: -24px 0.38263% 0 0;
+  margin: -24px 0.37498% 0 0;
   font-size: 1em;
   text-align: center;
   color: rgb(92, 92, 92);
@@ -204,6 +194,11 @@ body {
 }
 
 .wrapper-5 {
+  left: 0;
+  z-index: 9;
+}
+
+.wrapper-6 {
   visibility: hidden;
   position: relative;
   float: left;
@@ -211,17 +206,17 @@ body {
   z-index: 19;
   width: 39.1666666666%;
   height: 335px;
-  margin: -519px 0 0 30.3997395833%;
+  margin: -519px 0 0 29.99349%;
   background-color: rgb(92, 92, 92);
 }
 
 .container ._button-1 {
   clear: both;
   z-index: 8;
-  margin-left: 74.4987%;
+  margin-left: 74.4970699999%;
 }
 
 .container ._button-2 {
   z-index: 7;
-  margin-left: 0.95378%;
+  margin-left: 0.95215%;
 }

@@ -4,19 +4,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
   <title>index</title>
+  <link href="http://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/standardize.css">
   <link rel="stylesheet" href="css/index-grid.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body class="body page-index clearfix">
-  <div class="container _element"></div>
-  <div class="container _container clearfix">
-    <div class="text text-1">
+  <div class="container clearfix">
+    <div class="text">
       <p>We need a cool&nbsp;</p>
       <p>name &amp; logo</p>
 </div>
-    <p class="text text-2">Retailers</p>
-    <p class="text text-3">Suppliers</p>
+    <button class="_button _button-1 js-signup-button">sign up</button>
+    <button class="_button _button-2 js-login-button">log in</button>
   </div>
+  <div class="wrapper wrapper-1 js-signup-container"><form class='signupForm' action='/signup' method='post'>
+      <input class="_input _input-1 js-signup-username-field" name="username" type="text">
+    <input class="_input _input-2 js-signup-password-field" name="password" type="password">
+    <input class="_button _button-3 js-signup-submit" type="submit" value='get started'>
+</form></div>
+  <div class="wrapper wrapper-2 js-login-container"><form class='loginForm' action='/login' method='post'>
+      <input class="_input _input-1 js-login-username-field" name="username" type="text">
+    <input class="_input _input-2 js-login-password-field" name="password" type="password">
+    <input class="_button _button-3 js-login-submit" type="submit" value='get started'>
+</form></div>
+
+  <script src="js/jquery-min.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

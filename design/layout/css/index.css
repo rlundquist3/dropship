@@ -1,57 +1,69 @@
 body {
   background-color: rgb(255, 255, 255);
-  font: 400 2.125em/1.38 Helvetica;
+  font: 100 2.125em/1.38 Roboto;
   color: rgb(255, 255, 255);
 }
 
+p {
+  margin-bottom: 1em;
+}
+
 .container {
+  position: absolute;
+  top: 0;
   left: 0;
-  width: 100%;
+  z-index: 3;
+  width: 98.6666666666%;
+  height: 200px;
   background-color: rgb(122, 79, 177);
 }
 
 .text {
   float: left;
-  font-weight: 400;
+  margin: 33px 0 0 9.99921%;
+  font-size: 1em;
   line-height: 1.38;
   color: rgb(255, 255, 255);
 }
 
-.text-1 p {
-  margin-bottom: 1em;
+.wrapper {
+  visibility: hidden;
+  position: relative;
+  float: left;
+  height: 312px;
+  margin-top: 275px;
+  overflow: hidden;
 }
 
-._container {
-  position: fixed;
-  top: 0;
-  z-index: 3;
-  height: 200px;
+._button {
+  display: block;
+  float: left;
+  width: 6.8913640202%;
+  height: 25px;
+  margin-top: 168px;
+  border-radius: 3px;
+  background-color: rgb(222, 222, 222);
+  font: 400 0.471em/1.38 Helvetica;
+  text-align: center;
+  color: rgb(0, 0, 0);
 }
 
-._element {
-  position: absolute;
-  bottom: 0;
+.wrapper-1 {
   z-index: 4;
-  height: 117px;
+  width: 34.8%;
+  margin-left: 22.7994791666%;
 }
 
-.text-1 {
-  margin: 33px 0 0 10%;
-  font-size: 1em;
+.wrapper-2 {
+  z-index: 5;
+  width: 34.7994791666%;
+  margin-left: 0.5013020833%;
 }
 
-.text-2 {
-  width: 6.8333333333%;
-  height: 28px;
-  margin: 172px 0 0 39.18099%;
-  font-size: 0.529em;
-  text-align: center;
+.container ._button-1 {
+  margin-left: 47.83837%;
 }
 
-.text-3 {
-  width: 6.8333333333%;
-  height: 28px;
-  margin: 172px 0 0 1.56771%;
-  font-size: 0.529em;
-  text-align: center;
+.container ._button-2 {
+  margin-left: 1.62057%;
 }

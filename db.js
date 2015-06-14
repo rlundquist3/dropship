@@ -9,12 +9,37 @@ var db = function() {
 
 }
 
-db.prototype.getFromDB = function(db, query, callback) {
-	couch.get(db, query, function(err, resData) {
-		console.log(db)
+db.prototype.getUser = function(username, callback) {
+	var db = 'users'
+	var query = '/_design/users/_view/username'
+	var queryOptions = {
+		key: username
+	}
+	couch.get(db, query, queryOptions, function(err, resData) {
+		if (err)
+			throw err
+		callback(null, resData.data)
+	})
+}
+
+db.prototype.saveUser = function(user) {
+	var data = {
+		_id: uuid.v1(),
+		username: user.username,
+		password: user.password
+	}
+	couch.insert('users', data, function(err, resData) {
+		if (err)
+			throw err
+		console.dir(resData)
+	})
+}
+
+db.prototype.getFromDB = function(type, query, callback) {
+	couch.get(type, query, function(err, resData) {
 		if (err)
 			return console.error(err)
-		callback(null, db, resData.data.rows)
+		callback(null, type, resData.data.rows)
 	})
 }
 

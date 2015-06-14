@@ -2,11 +2,11 @@
   var $uploadForm = $('.js-upload-form');
   var $updateButton = $('.js-update-button');
   var $uploadButton = $('.js-upload-button');
-  var $productsTable = $('.js-products-table');
-  var $inventoryTable = $('.js-inventory-table');
-  var $ordersTable = $('.js-orders-table');
-  var $partnersTable = $('.js-partners-table');
-  var $profileTable = $('.js-profile-table');
+  var $productsContainer = $('.js-products-container');
+  var $inventoryContainer = $('.js-inventory-container');
+  var $ordersContainer = $('.js-orders-container');
+  var $partnersContainer = $('.js-partners-container');
+  var $profileContainer = $('.js-profile-container');
   var $tableSlider = $('.js-table-slider');
   var $searchBar = $('.js-search-bar');
   var $profileTab = $('.js-profile-tab');
@@ -43,35 +43,45 @@
     $tableSlider.css('left', '-400%')
   })
 
-  var socket = io.connect();
-  socket.emit('get_company_data')
-  socket.on('products_data', function(data) {
-    socket.emit('product_confirm', 'client got product data')
-    displayProductData(data)
-  })
-  socket.on('inventory_data', function(data) {
-    socket.emit('inventory_confirm', 'client got inventory data')
-    displayInventoryData(data)
-  })
-
-  function displayProductData(data) {
-    $productsTable.html('<table cellpadding="0" cellspacing="0" border="0" class="products-table-table"></table>')
-    console.log(data)
-    $('.products-table-table').dataTable({
-        'data': data,
-        'columns': [
-            {'data': 'value.z', 'title': 'a'},
-            {'data': 'value.y', 'title': 'b'},
-            {'data': 'value.x', 'title': 'c'},
-            {'data': 'value.w', 'title': 'd'},
-            {'data': 'value.v', 'title': 'e'}
-        ]
+    var socket = io.connect();
+    socket.emit('get_company_data')
+    socket.on('products_data', function(data) {
+      socket.emit('product_confirm', 'client got product data')
+      displayProductData(data)
     })
-  }
+    socket.on('inventory_data', function(data) {
+      socket.emit('inventory_confirm', 'client got inventory data')
+      displayInventoryData(data)
+    })
+  	
+    var containers = [$productsContainer, $inventoryContainer, $ordersContainer, $partnersContainer, $profileContainer]
+    
+    function displayData(container, type, data) {
+      container.html('<table cellpadding="0" cellspacing="0" border="0" class="' + type + '></table>')
+      for (var i = 2; i < data.value.length; i++) {
+        
+      }
+      $('.' + type).dataTable({
+        'data': data,
+        'columns': 
+      
+    }
+    function displayProductData(data) {
+      $productsContainer.html('<table cellpadding="0" cellspacing="0" border="0" class="products-table"></table>')
+      console.log(data)
+      $('.products-table').dataTable({
+          'data': data,
+          'columns': [
+              {'data': 'value.z', 'title': 'a'},
+              {'data': 'value.y', 'title': 'b'},
+              {'data': 'value.x', 'title': 'c'},
+              {'data': 'value.w', 'title': 'd'},
+              {'data': 'value.v', 'title': 'e'}
+          ]
+      })
+    }
 
-  function displayInventoryData(data) {
-    $inventoryTable.html('soup')
-  }
-
-
+    function displayInventoryData(data) {
+      $inventoryTable.html('soup')
+    }
 })();

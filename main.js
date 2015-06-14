@@ -8,7 +8,7 @@ var bodyParser = require('body-parser')
 var multer = require('multer')
 var util = require('util')
 var db = require('./db.js')
-
+var passport = require('passport')
 
 /*
 var https = require('https')
@@ -26,6 +26,8 @@ var HOST = 'localhost'
 var server = http.createServer(app).listen(PORT, HOST)
 console.log('HTTP server listening on %s:%s', HOST, PORT)
 
+require('./passport.js')(passport)
+
 var io = require('socket.io')(server)
 
 var tabs = ['products',
@@ -41,6 +43,8 @@ app.set('views', __dirname + '/design/layout/')
 
 var uploadDone = false
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(cookieParser())
+
 app.use(multer({
 	dest: './uploads/',
 	rename: function(fieldname, filename, req) {
@@ -74,6 +78,18 @@ app.get('/', function(req, res) {
 	res.render('index')
 })
 
+app.post('/signup', passport.authenticate('local-signup', {
+	successRedirect: util.format('/user_%s', name),
+	failureRedirect: '/signup'
+	failureFlash: true
+}))
+
+app.post('/login', passport.authenticate('local-login', {
+	successRedirect: util.format('/user_%s', name),
+	failureRedirect: '/login'
+	failureFlash: true
+}))
+
 var name = 'test'
 app.get(util.format('/user_%s', name), function(req, res) {
 	res.render('retailers', {company_name: 'company name'})
@@ -83,10 +99,6 @@ app.post('/uploadFile', function(req, res) {
 	if (uploadDone) {
 		res.redirect('back')
 	}
-})
-
-app.get('/products', function(req, res) {
-	res.render('products')
 })
 
 function loadCompanyData() {
