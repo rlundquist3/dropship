@@ -13,7 +13,7 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
-
+var companyData = require('./companyData.js')
 
 /*
 var https = require('https')

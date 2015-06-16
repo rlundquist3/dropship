@@ -53,18 +53,15 @@
       socket.emit('inventory_confirm', 'client got inventory data')
       displayInventoryData(data)
     })
-  	
+
     var containers = [$productsContainer, $inventoryContainer, $ordersContainer, $partnersContainer, $profileContainer]
-    
+
     function displayData(container, type, data) {
       container.html('<table cellpadding="0" cellspacing="0" border="0" class="' + type + '></table>')
       for (var i = 2; i < data.value.length; i++) {
         
       }
-      $('.' + type).dataTable({
-        'data': data,
-        'columns': 
-      
+
     }
     function displayProductData(data) {
       $productsContainer.html('<table cellpadding="0" cellspacing="0" border="0" class="products-table"></table>')
