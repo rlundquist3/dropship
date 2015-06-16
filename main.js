@@ -7,13 +7,13 @@ var http = require('http')
 var bodyParser = require('body-parser')
 var multer = require('multer')
 var util = require('util')
-var db = require('./db.js')
+var db = require('./data/db.js')
 var mongoose = require('mongoose')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
-var companyData = require('./companyData.js')
+var companyData = require('./data/testData.js')
 
 /*
 var https = require('https')
@@ -56,7 +56,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-var User = require('./user.js')
+var User = require('./data/user.js')
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
@@ -133,8 +133,6 @@ function loadCompanyData() {
 		db.getFromDB(tab, query, function(err, tab, data) {
 			if (err)
 				throw err
-			console.log('callback')
-			console.log(data)
 			io.emit(util.format('%s_data', tab), data)
 		})
 	}

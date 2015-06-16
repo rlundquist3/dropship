@@ -1,6 +1,6 @@
 var fs = require('fs')
 var csv = require('fast-csv')
-var TestData = require('./companyData.js')
+var TestData = require('./testData.js')
 var uuid = require('uuid')
 var nodeCouchDB = require('node-couchdb')
 
@@ -11,10 +11,15 @@ var db = function() {
 }
 
 db.prototype.getFromDB = function(type, query, callback) {
-	couch.get(type, query, function(err, resData) {
+	TestData.find({}, function(err, data) {
 		if (err)
-			return console.error(err)
-		callback(null, type, resData.data.rows)
+			throw err
+
+		var rows = []
+		data.forEach(function(data) {
+			rows.push(data)
+		})
+		callback(null, type, rows)
 	})
 }
 
@@ -38,16 +43,15 @@ db.prototype.insertIntoDB = function(dataType, file) {
 			console.log(data)
 
 			var test = new TestData()
-			test.z = data.z
-			test.y = data.y
-			test.x = data.x
-			test.w = data.w
-			test.v = data.v
+			for (var property in data) {
+				if (data.hasOwnProperty(property))
+					test[property] = data[property]
+			}
 			console.log(test)
 			test.save(function(err) {
 				if (err)
 					throw err
-				console.log('Data stored')
+				console.log('Data stored successfully')
 			})
 		})
 		.on('end', function() {

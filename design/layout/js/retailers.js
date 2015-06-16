@@ -56,24 +56,24 @@
 
     var containers = [$productsContainer, $inventoryContainer, $ordersContainer, $partnersContainer, $profileContainer]
 
-    function displayData(container, type, data) {
+    /*function displayData(container, type, data) {
       container.html('<table cellpadding="0" cellspacing="0" border="0" class="' + type + '></table>')
       for (var i = 2; i < data.value.length; i++) {
-        
+
       }
 
-    }
+  }*/
     function displayProductData(data) {
       $productsContainer.html('<table cellpadding="0" cellspacing="0" border="0" class="products-table"></table>')
       console.log(data)
       $('.products-table').dataTable({
           'data': data,
           'columns': [
-              {'data': 'value.z', 'title': 'a'},
-              {'data': 'value.y', 'title': 'b'},
-              {'data': 'value.x', 'title': 'c'},
-              {'data': 'value.w', 'title': 'd'},
-              {'data': 'value.v', 'title': 'e'}
+              {'data': 'z', 'title': 'z'},
+              {'data': 'y', 'title': 'y'},
+              {'data': 'x', 'title': 'x'},
+              {'data': 'w', 'title': 'w'},
+              {'data': 'v', 'title': 'v'}
           ]
       })
     }
