@@ -1,10 +1,6 @@
 var fs = require('fs')
 var csv = require('fast-csv')
 var TestData = require('./testData.js')
-var uuid = require('uuid')
-var nodeCouchDB = require('node-couchdb')
-
-var couch = new nodeCouchDB('localhost', 5984)
 
 var db = function() {
 
