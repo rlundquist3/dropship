@@ -8,8 +8,9 @@ var bodyParser = require('body-parser')
 var multer = require('multer')
 var util = require('util')
 var db = require('./db.js')
+var mongoose = require('mongoose')
 var passport = require('passport')
-var flash = require('connect-flash')
+var LocalStrategy = require('passport-local').Strategy
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
 
@@ -23,16 +24,6 @@ var options = {
 var server = https.createServer(options, app).listen(PORT, HOST)
 console.log('HTTPS server listening on %s:%s', HOST, PORT)
 */
-
-require('./passport.js')(passport)
-app.use(session({
-	secret: 'turtlesoup',
-	resave: true,
-	saveUninitialized: true
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
 
 var PORT = 8000
 var HOST = 'localhost'
@@ -56,6 +47,21 @@ app.set('views', __dirname + '/design/layout/')
 var uploadDone = false
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
+
+app.use(session({
+	secret: 'turtlesoup',
+	resave: false,
+	saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+var User = require('./user.js')
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+mongoose.connect('mongodb://localhost/users')
 
 app.use(multer({
 	dest: './uploads/',
@@ -90,17 +96,25 @@ app.get('/', function(req, res) {
 	res.render('index')
 })
 
-app.post('/signup', passport.authenticate('local-signup', {
-	successRedirect: util.format('/user_%s', name),
-	failureRedirect: '/signup',
-	failureFlash: true
-}))
+app.post('/signup', function(req, res) {
+	User.register(new User({username: req.body.username}), req.body.password, function(err, account) {
+		if (err)
+			throw err
 
-app.post('/login', passport.authenticate('local-login', {
-	successRedirect: util.format('/user_%s', name),
-	failureRedirect: '/login',
-	failureFlash: true
-}))
+		passport.authenticate('local')(req, res, function() {
+			res.redirect('/user_test')
+		})
+	})
+})
+
+app.post('/login', passport.authenticate('local'), function(req, res) {
+	res.redirect('/user_test')
+})
+
+app.get('/logout', function(req, res) {
+    req.logout()
+    res.redirect('/')
+})
 
 var name = 'test'
 app.get(util.format('/user_%s', name), function(req, res) {
