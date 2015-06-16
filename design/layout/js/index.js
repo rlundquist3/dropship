@@ -7,9 +7,9 @@
 
   $signupButton.on('click', function() {
     $signupContainer.css('visibility', 'visible')
-  }
+  })
                    
   $loginButton.on('click', function() {
     $loginContainer.css('visibility', 'visible')
-  }
+  })
 })();

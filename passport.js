@@ -16,7 +16,7 @@ module.exports = function(passport) {
         passReqToCallback: true
     },
     function(req, username, password, done) {
-        User.find(username, function(err, user) {
+        User.findOne({username: username}, function(err, user) {
             if (err)
                 return done(err)
             if (user)
@@ -34,7 +34,7 @@ module.exports = function(passport) {
             }
         })
     }))
-    
+
     passport.use('local-login', new LocalStrategy({
         passReqToCallback: true
     },
@@ -48,6 +48,5 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('loginMessage', 'Incorrect password'))
             return done(null, user)
         })
-    }
     }))
 }

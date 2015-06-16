@@ -9,6 +9,10 @@ var multer = require('multer')
 var util = require('util')
 var db = require('./db.js')
 var passport = require('passport')
+var flash = require('connect-flash')
+var session = require('express-session')
+var cookieParser = require('cookie-parser')
+
 
 /*
 var https = require('https')
@@ -20,13 +24,21 @@ var server = https.createServer(options, app).listen(PORT, HOST)
 console.log('HTTPS server listening on %s:%s', HOST, PORT)
 */
 
+require('./passport.js')(passport)
+app.use(session({
+	secret: 'turtlesoup',
+	resave: true,
+	saveUninitialized: true
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
+
 var PORT = 8000
 var HOST = 'localhost'
 
 var server = http.createServer(app).listen(PORT, HOST)
 console.log('HTTP server listening on %s:%s', HOST, PORT)
-
-require('./passport.js')(passport)
 
 var io = require('socket.io')(server)
 
@@ -80,13 +92,13 @@ app.get('/', function(req, res) {
 
 app.post('/signup', passport.authenticate('local-signup', {
 	successRedirect: util.format('/user_%s', name),
-	failureRedirect: '/signup'
+	failureRedirect: '/signup',
 	failureFlash: true
 }))
 
 app.post('/login', passport.authenticate('local-login', {
 	successRedirect: util.format('/user_%s', name),
-	failureRedirect: '/login'
+	failureRedirect: '/login',
 	failureFlash: true
 }))
 

@@ -32,6 +32,7 @@ p {
   float: left;
   height: 312px;
   margin-top: 275px;
+  background-color: rgb(92, 92, 92);
   overflow: hidden;
 }
 
