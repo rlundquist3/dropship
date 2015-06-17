@@ -101,14 +101,13 @@ app.post('/signup', function(req, res) {
 			throw err
 
 		passport.authenticate('local')(req, res, function() {
-			//Pull authenticated user from session
+			console.log('redirect to: ' + util.format('/%s', req.user.username))
 			res.redirect(util.format('/%s', req.user.username))
 		})
 	})
 })
 
 app.post('/login', passport.authenticate('local'), function(req, res) {
-	//Pull authenticated user from session
 	res.redirect(util.format('/%s', req.user.username))
 })
 
@@ -118,6 +117,7 @@ app.get('/logout', function(req, res) {
 })
 
 app.get('/:username', function(req, res) {
+	console.log('rendering for: ' + req.params.username)
 	res.render('retailers', {company_name: req.user.companyName})
 })
 
