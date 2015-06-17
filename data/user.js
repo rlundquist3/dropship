@@ -6,7 +6,8 @@ var userConnection = mongoose.createConnection('mongodb://localhost/users')
 
 var User = new Schema({
     username: String,
-    password: String
+    password: String,
+    companyName: String
 })
 
 User.plugin(passportLocalMongoose)

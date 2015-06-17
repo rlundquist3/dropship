@@ -95,18 +95,21 @@ app.get('/', function(req, res) {
 })
 
 app.post('/signup', function(req, res) {
-	User.register(new User({username: req.body.username}), req.body.password, function(err, account) {
+	console.log(req.body)
+	User.register(new User({username: req.body.username, companyName: req.body.company}), req.body.password, function(err, account) {
 		if (err)
 			throw err
 
 		passport.authenticate('local')(req, res, function() {
-			res.redirect('/user_test')
+			//Pull authenticated user from session
+			res.redirect(util.format('/%s', req.user.username))
 		})
 	})
 })
 
 app.post('/login', passport.authenticate('local'), function(req, res) {
-	res.redirect('/user_test')
+	//Pull authenticated user from session
+	res.redirect(util.format('/%s', req.user.username))
 })
 
 app.get('/logout', function(req, res) {
@@ -114,9 +117,8 @@ app.get('/logout', function(req, res) {
     res.redirect('/')
 })
 
-var name = 'test'
-app.get(util.format('/user_%s', name), function(req, res) {
-	res.render('retailers', {company_name: 'company name'})
+app.get('/:username', function(req, res) {
+	res.render('retailers', {company_name: req.user.companyName})
 })
 
 app.post('/uploadFile', function(req, res) {
@@ -127,9 +129,6 @@ app.post('/uploadFile', function(req, res) {
 
 function loadCompanyData() {
 	for (var tab of tabs) {
-		var query = util.format('_design/%s/_view/all_%s', tab, tab)
-		console.log(query)
-
 		db.getFromDB(tab, query, function(err, tab, data) {
 			if (err)
 				throw err

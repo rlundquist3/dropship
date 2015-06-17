@@ -47,8 +47,7 @@
     socket.emit('get_company_data')
     socket.on('products_data', function(data) {
       socket.emit('product_confirm', 'client got product data')
-      //displayProductData(data)
-      displayData($productsContainer, 'product', data)
+      displayProductData(data)
     })
     socket.on('inventory_data', function(data) {
       socket.emit('inventory_confirm', 'client got inventory data')

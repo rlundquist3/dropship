@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body class="body page-index clearfix">
-  <div class="container clearfix">
+  <div class="container container-1 clearfix">
     <div class="text">
       <p>We need a cool&nbsp;</p>
       <p>name &amp; logo</p>
@@ -18,16 +18,22 @@
     <button class="_button _button-1 js-signup-button">sign up</button>
     <button class="_button _button-2 js-login-button">log in</button>
   </div>
-  <div class="wrapper wrapper-1 js-signup-container"><form class='signupForm' action='/signup' method='post'>
-      <input class="_input _input-1 js-signup-username-field" name="username" type="text">
-    <input class="_input _input-2 js-signup-password-field" name="password" type="password">
-    <input class="_button _button-3 js-signup-submit" type="submit" value='get started'>
-</form></div>
-  <div class="wrapper wrapper-2 js-login-container"><form class='loginForm' action='/login' method='post'>
-      <input class="_input _input-1 js-login-username-field" name="username" type="text">
-    <input class="_input _input-2 js-login-password-field" name="password" type="password">
-    <input class="_button _button-3 js-login-submit" type="submit" value='get started'>
-</form></div>
+  <div class="container container-2 clearfix js-signup-container">
+    <div class="container clearfix">
+      <input class="_input js-signup-company-name" name="signupCompanyName" type="text">
+      <input class="_input _input-2 js-signup-username" name="signupUsername" type="text">
+      <input class="_input _input-3 js-signup-password" name="signupPassword" type="password">
+      <input class="_input _input-4 js-signup-password-confirm" name="signupPasswordConfirm" type="password">
+      <button class="_button _button-3 js-signup-submit">get started</button>
+    </div>
+  </div>
+  <div class="container container-4 clearfix js-login-container">
+    <div class="container clearfix">
+      <input class="_input _input-5 js-login-username" name="loginUsername" type="text">
+      <input class="_input _input-6 js-login-password" name="loginPassword" type="password">
+      <button class="_button _button-4 js-login-submit">get started</button>
+    </div>
+  </div>
 
   <script src="js/jquery-min.js"></script>
   <script src="js/index.js"></script>
