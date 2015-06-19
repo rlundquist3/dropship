@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0">
-  <title>retailers</title>
+  <title>profile</title>
   <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,100" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/standardize.css">
-  <link rel="stylesheet" href="css/retailers-grid.css">
-  <link rel="stylesheet" href="css/retailers.css">
-  <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="css/profile-grid.css">
+  <link rel="stylesheet" href="css/profile.css">
 </head>
-<body class="body page-retailers clearfix">
+<body class="body page-profile clearfix">
   <div class="container container-1 clearfix">
     <div class="text text-1">
       <p>We need a cool&nbsp;</p>
       <p>name &amp; logo</p>
 </div>
+    <input class="_input js-search-bar" name="search" placeholder="search..." type="text">
     <p class="text text-2 js-company-name">{{ company_name }}</p>
   </div>
   <div class="container container-2 clearfix">
@@ -24,9 +24,8 @@
       <p class="text text-4 js-inventory-tab">Inventory</p>
       <p class="text text-5 js-orders-tab">Orders</p>
       <p class="text text-6 js-partners-tab">Partners</p>
-      <p class="text text-7 js-profile-tab">Profile</p>
+      <p onClick="window.location='company.html';" class="text text-7 js-profile-tab">Profile</p>
     </div>
-    <input class="_input js-search-bar" name="search" placeholder="search..." type="text">
     <div class="container container-4 js-table-slider">
       <div class="wrapper wrapper-1 js-profile-container">/profile</div>
       <div class="wrapper wrapper-2 js-partners-container">/partners</div>
@@ -57,8 +56,6 @@
 </form></div>
 
   <script src="js/jquery-min.js"></script>
-  <script src="js/retailers.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/profile.js"></script>
 </body>
 </html>

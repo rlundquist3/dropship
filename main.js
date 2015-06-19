@@ -116,15 +116,24 @@ app.get('/logout', function(req, res) {
 })
 
 app.get('/:username', function(req, res) {
-	console.log('rendering for: ' + req.params.username)
-	res.render('retailers', {company_name: req.user.companyName}, function(err, html) {
-		if (err)
-			console.log(err)
-		else {
-			console.log('no error')
-			res.send(html)
-		}
-	})
+	if (req.params.username == req.user.username) {
+		res.render('profile', {company_name: req.user.companyName}, function(err, html) {
+			if (err)
+				console.log(err)
+			else {
+				console.log('no error')
+				res.send(html)
+			}
+		})
+	} else {
+		User.findOne({username: req.params.username}, function(err, user) {
+			if (err)
+				throw err
+			res.render('company', {company_name: req.user.companyName,
+									name: user.companyName,
+									description: 'need to add this'})
+		})
+	}
 })
 
 app.post('/uploadFile', function(req, res) {

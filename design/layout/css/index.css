@@ -12,12 +12,12 @@ p {
   float: left;
   width: 52.3517382413%;
   height: 214px;
-  margin: 97px 0 0 26.57848%;
+  margin: 97px 0 0 26.57209%;
 }
 
 .text {
   float: left;
-  margin: 33px 0 0 9.99921%;
+  margin: 33px 0 0 9.9974%;
   font-size: 1em;
   line-height: 1.38;
   color: rgb(255, 255, 255);
@@ -49,7 +49,7 @@ p {
   top: 0;
   left: 0;
   z-index: 3;
-  width: 98.6666666666%;
+  width: 100%;
   height: 200px;
   background-color: rgb(122, 79, 177);
 }
@@ -61,7 +61,7 @@ p {
   z-index: 10;
   width: 40.75%;
   height: 433px;
-  margin: 310px 0 0 9.25%;
+  margin: 310px 0 0 10.64974%;
   background-color: rgb(143, 143, 143);
 }
 
@@ -72,34 +72,34 @@ p {
   z-index: 15;
   width: 40.75%;
   height: 433px;
-  margin: 310px 0 0 1.5416666666%;
+  margin: 310px 0 0 0.5%;
   background-color: rgb(143, 143, 143);
 }
 
 .container ._button-1 {
   width: 6.8913640202%;
   height: 25px;
-  margin: 168px 0 0 47.83837%;
+  margin: 168px 0 0 47.83594%;
 }
 
 .container ._button-2 {
   width: 6.8913640202%;
   height: 25px;
-  margin: 168px 0 0 1.62057%;
+  margin: 168px 0 0 1.61849%;
 }
 
 .container ._button-3 {
   clear: both;
   width: 39.0625%;
   height: 27px;
-  margin: 17px 0 0 60.9375%;
+  margin: 17px 0 0 60.9314%;
 }
 
 .container ._button-4 {
   clear: both;
   width: 39.0625%;
   height: 27px;
-  margin: 67px 0 0 60.9375%;
+  margin: 67px 0 0 60.9314%;
 }
 
 .container ._input-2 {

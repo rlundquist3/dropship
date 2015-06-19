@@ -16,24 +16,24 @@
   $signupButton.on('click', function() {
     $signupContainer.css('visibility', 'visible')
   })
-
+                   
   $loginButton.on('click', function() {
     $loginContainer.css('visibility', 'visible')
   })
 
   $signupSubmit.on('click', function() {
-    if($signupPassword.val() == $signupPasswordConfirm.val()) {
-        $.post('/signup', {company: $signupCompanyName.val(),
-                              username: $signupUsername.val(),
-                              password: $signupPassword.val()})
+    if($signupPassword.val() = $signupPasswordConfirm.val()) {
+      $.post('/signup', {company: $signupCompanyName.val(),
+                         username: $signupUsername.val(),
+                         password: $signupPassword.val()})
     } else {
       alert('passwords do not match')
     }
   })
-
+    
   $loginSubmit.on('click', function() {
     $.post('/login', {username: $loginUsername.val(),
                       password: $loginPassword.val()})
   })
-
+                       
 })();

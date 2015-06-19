@@ -8,13 +8,13 @@
   var $partnersContainer = $('.js-partners-container');
   var $profileContainer = $('.js-profile-container');
   var $tableSlider = $('.js-table-slider');
-  var $searchBar = $('.js-search-bar');
   var $profileTab = $('.js-profile-tab');
   var $partnersTab = $('.js-partners-tab');
   var $ordersTab = $('.js-orders-tab');
   var $inventoryTab = $('.js-inventory-tab');
   var $productsTab = $('.js-products-tab');
   var $companyName = $('.js-company-name');
+  var $searchBar = $('.js-search-bar');
 
 
   $uploadButton.on('click', function() {
@@ -40,7 +40,8 @@
     $tableSlider.css('left', '-300%')
   })
   $profileTab.on('click', function() {
-    $tableSlider.css('left', '-400%')
+    //$tableSlider.css('left', '-400%')
+    
   })
 
     var socket = io.connect();
@@ -53,36 +54,36 @@
       socket.emit('inventory_confirm', 'client got inventory data')
       displayInventoryData(data)
     })
-
+  	
     function displayData(container, type, data) {
-      container.html('<table cellpadding="0" cellspacing="0" border="0" class="' + type + '"></table>')
-      console.log(data)
-      var columns = []
-      for (var column in data[0]) {
-          if (column != '_id' && column != '__v') {
-              columns.push({'data': column, 'title': column})
-          }
-      }
-      console.log(columns)
+        container.html('<table cellpadding="0" cellspacing="0" border="0" class="' + type + '"></table>')
+        console.log(data)
+        var columns = []
+        for (var column in data[0]) {
+            if (column != '_id' && column != '__v') {
+                columns.push({'data': column, 'title': column})
+            }
+        }
+        console.log(columns)
 
-      $('.'+type).dataTable({
-          'data': data,
-          'columns': columns
-      })
-  }
-
-    function displayProductData(data) {
-      $productsContainer.html('<table cellpadding="0" cellspacing="0" border="0" class="products-table"></table>')
-      console.log(data)
-      $('.products-table').dataTable({
-          'data': data,
-          'columns': [
-              {'data': 'z', 'title': 'z'},
-              {'data': 'y', 'title': 'y'},
-              {'data': 'x', 'title': 'x'},
-              {'data': 'w', 'title': 'w'},
-              {'data': 'v', 'title': 'v'}
-          ]
-      })
+        $('.'+type).dataTable({
+            'data': data,
+            'columns': columns
+        })
     }
+
+      function displayProductData(data) {
+        $productsContainer.html('<table cellpadding="0" cellspacing="0" border="0" class="products-table"></table>')
+        console.log(data)
+        $('.products-table').dataTable({
+            'data': data,
+            'columns': [
+                {'data': 'z', 'title': 'z'},
+                {'data': 'y', 'title': 'y'},
+                {'data': 'x', 'title': 'x'},
+                {'data': 'w', 'title': 'w'},
+                {'data': 'v', 'title': 'v'}
+            ]
+        })
+      }
 })();
