@@ -95,15 +95,11 @@ app.get('/', function(req, res) {
 })
 
 app.post('/signup', function(req, res) {
-	console.log(req.body)
 	User.register(new User({username: req.body.username, companyName: req.body.company}), req.body.password, function(err, account) {
 		if (err)
-			throw err
+			return res.render('index')
 
-		passport.authenticate('local')(req, res, function() {
-			console.log('redirect to: ' + util.format('/%s', req.user.username))
-			res.redirect(util.format('/%s', req.user.username))
-		})
+		passport.authenticate('local', {successRedirect: util.format('/%s', req.body.username), failureRedirect: '/'})(req, res)
 	})
 })
 
@@ -118,7 +114,14 @@ app.get('/logout', function(req, res) {
 
 app.get('/:username', function(req, res) {
 	console.log('rendering for: ' + req.params.username)
-	res.render('retailers', {company_name: req.user.companyName})
+	res.render('retailers', {company_name: req.user.companyName}, function(err, html) {
+		if (err)
+			console.log(err)
+		else {
+			console.log('no error')
+			res.send(html)
+		}
+	})
 })
 
 app.post('/uploadFile', function(req, res) {
