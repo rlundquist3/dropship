@@ -2,16 +2,15 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var passportLocalMongoose = require('passport-local-mongoose')
 
-var userConnection = mongoose.createConnection('mongodb://localhost/users')
+var userConnection = mongoose.createConnection('mongodb://localhost/organizations')
 
-var User = new Schema({
+var Organization = new Schema({
     username: String,
     password: String,
     companyName: String,
     partners: [String]
-
 })
 
 User.plugin(passportLocalMongoose)
 
-module.exports = userConnection.model('User', User)
+module.exports = userConnection.model('Organization', Organization)
