@@ -32,8 +32,8 @@
   })
 
   $loginSubmit.on('click', function() {
-    $.post('/login', {username: $loginUsername.text,
-                      password: $loginPassword.text})
+    $.post('/login', {username: $loginUsername.val(),
+                      password: $loginPassword.val()})
   })
 
 })();

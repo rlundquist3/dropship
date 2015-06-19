@@ -103,7 +103,10 @@ app.post('/signup', function(req, res) {
 	})
 })
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
+app.post('/login', passport.authenticate('local'), function(err, req, res) {
+	console.log('logging in')
+	if (err)
+		console.log('login error')
 	res.redirect(util.format('/%s', req.user.username))
 })
 
