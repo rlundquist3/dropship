@@ -19,7 +19,7 @@ html(lang='en')
         br
         br
         .container
-            .container.login-container
+            .container.login-container(style='visibility:hidden')
                 form.login-form(method='post', action='/login')
                     .form-group
                         label username
@@ -28,7 +28,7 @@ html(lang='en')
                         label password
                         input.form-control(name='password', placeholer='password', type='password')
                     button.btn.btn-default.login-submit(type='submit') Submit
-            .container.signup-container
+            .container.signup-container(style='visibility:hidden')
                 form.signup-form(method='post', action='/signup')
                     .form-group
                         label company name
