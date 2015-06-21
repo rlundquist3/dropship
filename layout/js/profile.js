@@ -1,4 +1,4 @@
-(function() {
+$(document).ready(function() {
 
     var socket = io.connect();
     socket.emit('get_company_data')
@@ -45,4 +45,4 @@
         ]
     })
     }
-})();
+})

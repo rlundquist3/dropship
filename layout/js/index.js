@@ -1,4 +1,4 @@
-(function() {
+$(document).ready(function() {
     console.log('aasdfasdf')
     var $signupButton = $('.signup-button')
     var $signupForm = $('.signup-form')
@@ -41,4 +41,4 @@
                         password: $loginPassword.val()})
     })*/
 
-})();
+})

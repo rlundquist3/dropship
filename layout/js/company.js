@@ -1,10 +1,11 @@
-(function() {
+$(document).ready(function() {
 
   $('.partner-button').on('click', function() {
-    sendPartnerRequest()
-  }
+      console.log('noodle')
+      sendPartnerRequest()
+  })
 
   function sendPartnerRequest() {
       //$.post('/parterRequest', {target: /*username*/})
   }
-})();
+})
