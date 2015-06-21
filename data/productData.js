@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
-var ObjectId = mongoose.Schema.types.ObjectId
+var ObjectId = mongoose.Schema.Types.ObjectId
 
 var productDataConnection = mongoose.createConnection('mongodb://localhost/product_data')
 

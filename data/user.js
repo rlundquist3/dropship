@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var passportLocalMongoose = require('passport-local-mongoose')
-var ObjectId = mongoose.Schema.types.ObjectId
+var ObjectId = mongoose.Schema.Types.ObjectId
 
 var userConnection = mongoose.createConnection('mongodb://localhost/users')
 

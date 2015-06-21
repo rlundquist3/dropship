@@ -9,6 +9,6 @@
   }
 
   function sendPartnerRequest() {
-      $.post('/parterRequest', {target: /*username*/})
+      //$.post('/parterRequest', {target: /*username*/})
   }
 })();

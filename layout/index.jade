@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+    head
+        title index
+        script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+        //link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+        script(src="js/index.js")
+
+    body
+        nav.navbar.navbar-default.navbar-fixed-top
+            .container-fluid
+                a.navbar-brand(href='/') Cool name & logo
+                button.btn.btn-default.navbar-btn.navbar-right.signup-button sign up
+                button.btn.btn-default.navbar-btn.navbar-right.login-button log in
+        br
+        br
+        br
+        .container
+            .container.login-container
+                form.login-form(method='post', action='/login')
+                    .form-group
+                        label username
+                        input.form-control(name='username', placeholer='username')
+                    .form-group
+                        label password
+                        input.form-control(name='password', placeholer='password', type='password')
+                    button.btn.btn-default.login-submit(type='submit') Submit
+            .container.signup-container
+                form.signup-form(method='post', action='/signup')
+                    .form-group
+                        label company name
+                        input.form-control(name='company', placeholer='company')
+                    .form-group
+                        label username
+                        input.form-control(name='username',
+                        placeholer='username')
+                    .form-group
+                        label password
+                        input.form-control(name='password', placeholer='password', type='password')
+                    .form-group
+                        label confirm password
+                        input.form-control(name='confirmPassword', placeholer='confirm', type='password')
+                    button.btn.btn-default.signup-submit(type='submit') Submit
+            

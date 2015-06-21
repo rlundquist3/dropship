@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 var fs = require('fs')
 var path = require('path')
+var jade = require('jade')
 var swig = require('swig')
 var http = require('http')
 var bodyParser = require('body-parser')
@@ -14,6 +15,7 @@ var LocalStrategy = require('passport-local').Strategy
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
 var companyData = require('./data/testData.js')
+//var bootstrap = require('bootstrap')
 
 /*
 var https = require('https')
@@ -39,10 +41,13 @@ var tabs = ['products',
 			'partners',
 			'profile'*/]
 
-app.engine('html', swig.renderFile)
-app.set('view engine', 'html')
-app.use(express.static(__dirname + '/design/layout/'))
-app.set('views', __dirname + '/design/layout/')
+//app.engine('html', swig.renderFile)
+//app.set('view engine', 'html')
+
+app.use(express.static(__dirname + '/layout/'))
+app.set('views', __dirname + '/layout/')
+app.set('view engine', 'jade')
+
 
 var uploadDone = false
 app.use(bodyParser.urlencoded({extended: false}))
@@ -95,12 +100,14 @@ app.get('/', function(req, res) {
 })
 
 app.post('/signup', function(req, res) {
-	User.register(new User({username: req.body.username, companyName: req.body.company}), req.body.password, function(err, account) {
-		if (err)
-			return res.render('index')
+	if (req.body.password == req.body.confirmPassword) {
+		User.register(new User({username: req.body.username, companyName: req.body.company}), req.body.password, function(err, account) {
+			if (err)
+				return res.render('index')
 
-		passport.authenticate('local', {successRedirect: util.format('/%s', req.body.username), failureRedirect: '/'})(req, res)
-	})
+			passport.authenticate('local', {successRedirect: util.format('/%s', req.body.username), failureRedirect: '/'})(req, res)
+		})
+	}
 })
 
 app.post('/login', passport.authenticate('local'), function(err, req, res) {
