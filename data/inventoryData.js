@@ -1,9 +1,11 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var ObjectId = mongoose.Schema.types.ObjectId
 
 var inventoryDataConnection = mongoose.createConnection('mongodb://localhost/inventory_data')
 
 var InventoryData = new Schema({
+    company: ObjectId,
     sku: String,
     title: String,
     wholesale_cost: Number,
