@@ -6,7 +6,7 @@ var db = function() {
 
 }
 
-db.prototype.getFromDB = function(type, query, callback) {
+db.prototype.getFromDB = function(type, callback) {
 	TestData.find({}, function(err, data) {
 		if (err)
 			throw err

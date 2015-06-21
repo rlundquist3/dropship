@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+    head
+        title index
+        script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+        link(rel='stylesheet', href='css/jquery.dataTables.min.css')
+        //link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+        
+        script(src='/socket.io/socket.io.js')
+        script(src='js/jquery.dataTables.min.js')
+        script(src="js/profile.js")
+    
+    body
+        .container
+            nav.navbar.navbar-default.navbar-fixed-top
+                .container
+                    a.navbar-brand(href='/') Cool name & logo
+                    p.navbar-text.navbar-right #{company_name}
+            br
+            br
+            br
+            ul.nav.nav-tabs(role='tablist')
+                li.active(role='presentation')
+                    a(href='#products', data-toggle='tab') Products
+                li(role='presentation')
+                    a(href='#inventory', data-toggle='tab') Inventory
+                li(role='presentation')
+                    a(href='#orders', data-toggle='tab') Orders
+                li(role='presentation')
+                    a(href='#partners', data-toggle='tab') Partners
+                li(role='presentation')
+                    a(href='#profile', data-toggle='tab') Profile
+            .tab-content
+                .tab-pane.fade.in.active#products product data loading...
+                .tab-pane.fade#inventory inventory data loading...
+                .tab-pane.fade#orders order data loading...
+                .tab-pane.fade#partners partner data loading...
+                .tab-pane.fade#profile profile loading...

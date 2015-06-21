@@ -123,7 +123,7 @@ app.get('/logout', function(req, res) {
 })
 
 app.get('/:username', function(req, res) {
-	if (req.params.username == req.user.username) {
+	if (req.user && req.params.username == req.user.username) {
 		res.render('profile', {company_name: req.user.companyName}, function(err, html) {
 			if (err)
 				console.log(err)
@@ -136,7 +136,10 @@ app.get('/:username', function(req, res) {
 		User.findOne({username: req.params.username}, function(err, user) {
 			if (err)
 				throw err
-			res.render('company', {company_name: req.user.companyName,
+			var displayName = ''
+			if (req.user)
+				displayName = req.user.companyName
+			res.render('company', {company_name: displayName,
 									name: user.companyName,
 									description: 'need to add this'})
 		})
@@ -151,7 +154,7 @@ app.post('/uploadFile', function(req, res) {
 
 function loadCompanyData() {
 	for (var tab of tabs) {
-		db.getFromDB(tab, query, function(err, tab, data) {
+		db.getFromDB(tab, function(err, tab, data) {
 			if (err)
 				throw err
 			io.emit(util.format('%s_data', tab), data)
