@@ -5,6 +5,6 @@ $(document).ready(function() {
   })
 
   function sendPartnerRequest() {
-      //$.post('/parterRequest', {target: /*username*/})
+      $.post('/partnerRequest', {target: $('.username').text()})
   }
 })

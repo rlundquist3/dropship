@@ -3,7 +3,7 @@ var app = express()
 var fs = require('fs')
 var path = require('path')
 var jade = require('jade')
-var swig = require('swig')
+//var swig = require('swig')
 var http = require('http')
 var bodyParser = require('body-parser')
 var multer = require('multer')
@@ -43,7 +43,6 @@ var tabs = ['products',
 
 //app.engine('html', swig.renderFile)
 //app.set('view engine', 'html')
-
 app.use(express.static(__dirname + '/layout/'))
 app.set('views', __dirname + '/layout/')
 app.set('view engine', 'jade')
@@ -141,6 +140,7 @@ app.get('/:username', function(req, res) {
 				displayName = req.user.companyName
 			res.render('company', {company_name: displayName,
 									name: user.companyName,
+									username: user.username,
 									description: 'need to add this'})
 		})
 	}
@@ -150,6 +150,19 @@ app.post('/uploadFile', function(req, res) {
 	if (uploadDone) {
 		res.redirect('back')
 	}
+})
+
+app.post('/partnerRequest', function(req, res) {
+	//Automatically add partner (add request confirmation)
+	var targetUser
+	User.findOne({username: req.body.target}, function(err, user) {
+		if (err)
+			throw err
+		user.partners.push(req.user._id)
+		user.save()
+		//User.findByIdAndUpdate(req.user._id, {$push: {partners: user._id}}, function(err) {})
+	})
+	//User.findByIdAndUpdate(target._id, {$push: {partners: reqester._id}})
 })
 
 function loadCompanyData() {
