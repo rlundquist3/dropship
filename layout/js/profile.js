@@ -45,4 +45,10 @@ $(document).ready(function() {
         ]
     })
     }
+
+    $('.partner-confirm-button').on('click', function() {
+        console.log($('.request_company').html())
+        console.log($('.request_company').text())
+        $.post('/partnerConfirm', {target: $('.request_company').html()})
+    })
 })

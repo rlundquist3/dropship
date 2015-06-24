@@ -9,7 +9,8 @@ var User = new Schema({
     username: String,
     password: String,
     companyName: String,
-    partners: [ObjectId]
+    partners: [ObjectId],
+    partnerRequests: [ObjectId]
 })
 
 User.plugin(passportLocalMongoose)

@@ -123,7 +123,15 @@ app.get('/logout', function(req, res) {
 
 app.get('/:username', function(req, res) {
 	if (req.user && req.params.username == req.user.username) {
-		res.render('profile', {company_name: req.user.companyName}, function(err, html) {
+		var partnerRequest = ''
+		if (req.user.partnerRequests) {
+			partnerRequest = req.user.partnerRequests[0]
+			/*User.findById(req.user.partnerRequests[0], function(err, user) {
+				partnerRequest = user.companyName
+			})*/
+		}
+		res.render('profile', {company_name: req.user.companyName,
+								request_company: partnerRequest}, function(err, html) {
 			if (err)
 				console.log(err)
 			else {
@@ -153,16 +161,30 @@ app.post('/uploadFile', function(req, res) {
 })
 
 app.post('/partnerRequest', function(req, res) {
-	//Automatically add partner (add request confirmation)
-	var targetUser
 	User.findOne({username: req.body.target}, function(err, user) {
+		if (err)
+			throw err
+		user.partnerRequests.push(req.user._id)
+		user.save()
+	})
+	//User.findOneAndUpdate({username: req.body.target}, {$push: {partnerRequests: req.user._id}})
+})
+
+app.post('/partnerConfirm', function(req, res) {
+	User.findOne({_id: req.body.target}, function(err, user) {
 		if (err)
 			throw err
 		user.partners.push(req.user._id)
 		user.save()
-		//User.findByIdAndUpdate(req.user._id, {$push: {partners: user._id}}, function(err) {})
 	})
-	//User.findByIdAndUpdate(target._id, {$push: {partners: reqester._id}})
+	//User.findOneAndUpdate({username: req.body.target}, {$push: {partners: req.user._id}})
+	User.findById(req.user._id, function(err, user) {
+		if (err)
+			throw err
+		user.partners.push(user.partnerRequests[0])
+		user.partnerRequests.splice(0, 1)
+		user.save()
+	})
 })
 
 function loadCompanyData() {
