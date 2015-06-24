@@ -125,10 +125,8 @@ app.get('/:username', function(req, res) {
 	if (req.user && req.params.username == req.user.username) {
 		var partnerRequest = ''
 		if (req.user.partnerRequests) {
-			partnerRequest = req.user.partnerRequests[0]
-			/*User.findById(req.user.partnerRequests[0], function(err, user) {
-				partnerRequest = user.companyName
-			})*/
+			partnerRequest = req.user.partnerRequests[0].companyName
+			//db.loadPartnerRequests()
 		}
 		res.render('profile', {company_name: req.user.companyName,
 								request_company: partnerRequest}, function(err, html) {
@@ -164,14 +162,14 @@ app.post('/partnerRequest', function(req, res) {
 	User.findOne({username: req.body.target}, function(err, user) {
 		if (err)
 			throw err
-		user.partnerRequests.push(req.user._id)
+		user.partnerRequests.push({_id: req.user._id, companyName: req.user.companyName})
 		user.save()
 	})
 	//User.findOneAndUpdate({username: req.body.target}, {$push: {partnerRequests: req.user._id}})
 })
 
 app.post('/partnerConfirm', function(req, res) {
-	User.findOne({_id: req.body.target}, function(err, user) {
+	User.findOne({/*_id*/companyName: req.body.target}, function(err, user) {
 		if (err)
 			throw err
 		user.partners.push(req.user._id)
