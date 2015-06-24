@@ -124,9 +124,9 @@ app.get('/logout', function(req, res) {
 app.get('/:username', function(req, res) {
 	if (req.user && req.params.username == req.user.username) {
 		var partnerRequest = ''
-		if (req.user.partnerRequests) {
+		if (req.user.partnerRequests.length > 0) {
+			//handle multiple requests
 			partnerRequest = req.user.partnerRequests[0].companyName
-			//db.loadPartnerRequests()
 		}
 		res.render('profile', {company_name: req.user.companyName,
 								request_company: partnerRequest}, function(err, html) {

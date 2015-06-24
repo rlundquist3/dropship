@@ -1,25 +1,9 @@
 var fs = require('fs')
 var csv = require('fast-csv')
 var TestData = require('./testData.js')
-var User = require('./user.js')
 
 var db = function() {
 
-}
-
-db.prototype.loadPartnerRequests = function(id, callback) {
-	User.findById(id, function(err, user) {
-		if (err)
-			throw err
-
-		var requestCompanies = []
-		user.partnerRequests.forEach(function(requestCompany) {
-			//add each request company name to array
-		})
-		/*for (var requestCompany of user.partnerRequests) {
-
-		}*/
-	})
 }
 
 db.prototype.getFromDB = function(type, callback) {

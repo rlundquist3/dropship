@@ -28,20 +28,22 @@ html(lang='en')
                     button.btn.btn-default.partner-confirm-button partner
                 .col-md-1 
                     button.btn.btn-default.partner-confirm-button reject
-            ul.nav.nav-tabs(role='tablist')
-                li.active(role='presentation')
-                    a(href='#products', data-toggle='tab') Products
-                li(role='presentation')
-                    a(href='#inventory', data-toggle='tab') Inventory
-                li(role='presentation')
-                    a(href='#orders', data-toggle='tab') Orders
-                li(role='presentation')
-                    a(href='#partners', data-toggle='tab') Partners
-                li(role='presentation')
-                    a(href='#profile', data-toggle='tab') Profile
-            .tab-content
-                .tab-pane.fade.in.active#products product data loading...
-                .tab-pane.fade#inventory inventory data loading...
-                .tab-pane.fade#orders order data loading...
-                .tab-pane.fade#partners partner data loading...
-                .tab-pane.fade#profile profile loading...
+            br
+            row
+                ul.nav.nav-tabs(role='tablist')
+                    li.active(role='presentation')
+                        a(href='#products', data-toggle='tab') Products
+                    li(role='presentation')
+                        a(href='#inventory', data-toggle='tab') Inventory
+                    li(role='presentation')
+                        a(href='#orders', data-toggle='tab') Orders
+                    li(role='presentation')
+                        a(href='#partners', data-toggle='tab') Partners
+                    li(role='presentation')
+                        a(href='#profile', data-toggle='tab') Profile
+                .tab-content
+                    .tab-pane.fade.in.active#products product data loading...
+                    .tab-pane.fade#inventory inventory data loading...
+                    .tab-pane.fade#orders order data loading...
+                    .tab-pane.fade#partners partner data loading...
+                    .tab-pane.fade#profile profile loading...
